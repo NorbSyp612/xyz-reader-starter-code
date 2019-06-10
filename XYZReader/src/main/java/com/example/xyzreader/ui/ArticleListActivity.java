@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -51,56 +52,87 @@ public class ArticleListActivity extends AppCompatActivity implements
     // Use default locale format
     private SimpleDateFormat outputFormat = new SimpleDateFormat();
     // Most time functions can only handle 1902 - 2037
-    private GregorianCalendar START_OF_EPOCH = new GregorianCalendar(2,1,1);
+    private GregorianCalendar START_OF_EPOCH = new GregorianCalendar(2, 1, 1);
+
+    private TextView titleText;
+    private CollapsingToolbarLayout ctbLayout;
+
+    private int fontCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_list);
 
-        ((CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar_layout)).setTitle("Eclairs");
+        ctbLayout = findViewById(R.id.collapsing_toolbar_layout);
+        AppBarLayout abLayout = (AppBarLayout) (findViewById(R.id.app_bar_layout));
+
+        abLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            int scrollRange = -1;
+            boolean titleShowing;
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange + i == 0) {
+                    ctbLayout.setTitle("XYZ Reader");
+                    titleShowing = true;
+                } else if(titleShowing) {
+                    ctbLayout.setTitle(" ");
+                    titleShowing = false;
+                }
+            }
+        });
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         getLoaderManager().initLoader(0, null, this);
 
-      //  if (savedInstanceState == null) {
-      //      refresh();
-      //  }
+        fontCounter = 0;
+
+          if (savedInstanceState == null) {
+              refresh();
+          }
     }
 
-  //  private void refresh() {
-  //      startService(new Intent(this, UpdaterService.class));
-  //  }
+      private void refresh() {
+          startService(new Intent(this, UpdaterService.class));
+      }
+
+    public void clickRefresh(View view) {
+
+    }
 
     @Override
     protected void onStart() {
         super.onStart();
-      //  registerReceiver(mRefreshingReceiver,
-             //   new IntentFilter(UpdaterService.BROADCAST_ACTION_STATE_CHANGE));
+        //  registerReceiver(mRefreshingReceiver,
+        //   new IntentFilter(UpdaterService.BROADCAST_ACTION_STATE_CHANGE));
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-      //  unregisterReceiver(mRefreshingReceiver);
+        //  unregisterReceiver(mRefreshingReceiver);
     }
 
-  //  private boolean mIsRefreshing = false;
+    //  private boolean mIsRefreshing = false;
 
-   // private BroadcastReceiver mRefreshingReceiver = new BroadcastReceiver() {
-  //      @Override
-   //     public void onReceive(Context context, Intent intent) {
-   //         Log.d("TEST", "REFRESHING RECEIVIER");
-   //         if (UpdaterService.BROADCAST_ACTION_STATE_CHANGE.equals(intent.getAction())) {
-   //             mIsRefreshing = intent.getBooleanExtra(UpdaterService.EXTRA_REFRESHING, false);
-   //            // updateRefreshingUI();
-   //         }
-   //     }
-   // };
+    // private BroadcastReceiver mRefreshingReceiver = new BroadcastReceiver() {
+    //      @Override
+    //     public void onReceive(Context context, Intent intent) {
+    //         Log.d("TEST", "REFRESHING RECEIVIER");
+    //         if (UpdaterService.BROADCAST_ACTION_STATE_CHANGE.equals(intent.getAction())) {
+    //             mIsRefreshing = intent.getBooleanExtra(UpdaterService.EXTRA_REFRESHING, false);
+    //            // updateRefreshingUI();
+    //         }
+    //     }
+    // };
 
-  //  private void updateRefreshingUI() {
-  //      mSwipeRefreshLayout.setRefreshing(mIsRefreshing);
-  //  }
+    //  private void updateRefreshingUI() {
+    //      mSwipeRefreshLayout.setRefreshing(mIsRefreshing);
+    //  }
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
@@ -177,8 +209,8 @@ public class ArticleListActivity extends AppCompatActivity implements
             } else {
                 holder.subtitleView.setText(Html.fromHtml(
                         outputFormat.format(publishedDate)
-                        + "<br/>" + " by "
-                        + mCursor.getString(ArticleLoader.Query.AUTHOR)));
+                                + "<br/>" + " by "
+                                + mCursor.getString(ArticleLoader.Query.AUTHOR)));
             }
             holder.thumbnailView.setImageUrl(
                     mCursor.getString(ArticleLoader.Query.THUMB_URL),
