@@ -43,7 +43,7 @@
 
     <ImageButton
         android:onClick="clickRefresh"
-        android:id="@+id/share_fab"
+        android:id="@+id/refresh_fab"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_gravity="bottom|end"

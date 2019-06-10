@@ -22,6 +22,7 @@ import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.xyzreader.R;
@@ -54,16 +55,17 @@ public class ArticleListActivity extends AppCompatActivity implements
     // Most time functions can only handle 1902 - 2037
     private GregorianCalendar START_OF_EPOCH = new GregorianCalendar(2, 1, 1);
 
-    private TextView titleText;
     private CollapsingToolbarLayout ctbLayout;
 
-    private int fontCounter;
+    private ImageButton refreshButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_list);
 
+        refreshButton = (ImageButton) findViewById(R.id.refresh_fab);
         ctbLayout = findViewById(R.id.collapsing_toolbar_layout);
         AppBarLayout abLayout = (AppBarLayout) (findViewById(R.id.app_bar_layout));
 
@@ -89,8 +91,6 @@ public class ArticleListActivity extends AppCompatActivity implements
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         getLoaderManager().initLoader(0, null, this);
 
-        fontCounter = 0;
-
           if (savedInstanceState == null) {
               refresh();
           }
@@ -101,7 +101,11 @@ public class ArticleListActivity extends AppCompatActivity implements
       }
 
     public void clickRefresh(View view) {
+        int numOfBooks = mRecyclerView.getChildCount();
+        Log.d("TEST", "num is: " + numOfBooks);
 
+        View test = mRecyclerView.getChildAt(1);
+        mRecyclerView.smoothScrollToPosition(0);
     }
 
     @Override
