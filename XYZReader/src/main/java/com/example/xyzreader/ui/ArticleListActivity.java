@@ -101,10 +101,6 @@ public class ArticleListActivity extends AppCompatActivity implements
       }
 
     public void clickRefresh(View view) {
-        int numOfBooks = mRecyclerView.getChildCount();
-        Log.d("TEST", "num is: " + numOfBooks);
-
-        View test = mRecyclerView.getChildAt(1);
         mRecyclerView.smoothScrollToPosition(0);
     }
 

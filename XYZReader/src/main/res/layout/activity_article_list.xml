@@ -52,7 +52,7 @@
         android:background="@drawable/add_fab_background"
         android:contentDescription="@string/action_share"
         android:elevation="@dimen/fab_elevation"
-        android:src="@drawable/ic_refresh"
+        android:src="@drawable/ic_up"
         android:stateListAnimator="@anim/fab_state_list_anim" />
 
     <android.support.v7.widget.RecyclerView
