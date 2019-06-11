@@ -7,6 +7,7 @@
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="192dp"
+        android:elevation="2dp"
         android:background="@color/theme_primary">
 
         <android.support.design.widget.CollapsingToolbarLayout
@@ -17,8 +18,7 @@
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleGravity="top"
             app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            android:elevation="7dp">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
                 android:layout_width="match_parent"
