@@ -17,7 +17,8 @@
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleGravity="top"
             app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            android:elevation="7dp">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -61,9 +62,6 @@
         android:layout_height="match_parent"
         android:background="@color/theme_light"
         android:clipToPadding="false"
-        android:paddingLeft="@dimen/list_side_margin"
-        android:paddingRight="@dimen/list_side_margin"
-        android:paddingBottom="28dp"
         android:scrollbarStyle="outsideOverlay"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 

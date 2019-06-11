@@ -3,17 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginLeft="4dp"
-    android:layout_marginRight="4dp"
-    android:layout_marginTop="4dp"
-    android:layout_marginBottom="4dp"
+    android:layout_marginBottom="1dp"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?selectableItemBackground">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="150dp">
 
         <!--suppress AndroidLintContentDescription -->
         <com.example.xyzreader.ui.DynamicHeightNetworkImageView
@@ -35,11 +32,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:maxLines="4"
-            android:paddingLeft="16dp"
-            android:paddingTop="8dp"
+            android:layout_marginTop="3dp"
+            android:maxLines="2"
+            android:paddingLeft="8dp"
             android:paddingRight="16dp"
             android:textColor="@color/theme_primary_dark"
             android:textSize="30sp"
@@ -59,7 +55,7 @@
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:paddingLeft="16dp"
+            android:paddingLeft="8dp"
             android:paddingRight="16dp"
             android:paddingBottom="16dp"
             android:textColor="@color/theme_primary_dark"
