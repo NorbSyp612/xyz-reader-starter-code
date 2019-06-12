@@ -21,8 +21,8 @@
 
     </style>
 
-    <style name="AppTheme" parent="AlertDialog.AppCompat.Light">
-
+    <style name="AppBars">
+        <item name="android:background">=@color/theme_primary</item>
     </style>
 
     <style name="Theme.Bacon.Detail">
