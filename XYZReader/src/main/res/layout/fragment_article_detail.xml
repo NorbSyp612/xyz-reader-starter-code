@@ -38,6 +38,7 @@
                 android:layout_marginTop="@dimen/detail_card_top_margin">
 
                 <LinearLayout
+                    android:elevation="4dp"
                     android:id="@+id/meta_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
