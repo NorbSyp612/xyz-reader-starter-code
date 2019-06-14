@@ -40,8 +40,9 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <ImageButton
+    <android.support.design.widget.FloatingActionButton
         android:onClick="clickRefresh"
+        app:pressedTranslationZ="@dimen/fab_elevation"
         android:id="@+id/refresh_fab"
         android:layout_width="56dp"
         android:layout_height="56dp"
